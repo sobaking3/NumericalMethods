@@ -15,7 +15,7 @@ namespace Численные_методы
             var x1 = new NumericalMethodObject(5.032, 2);
             var x2 = new NumericalMethodObject(2.159, 2);
             //Console.WriteLine(x1);
-            Console.WriteLine(x1 + x2);
+            Console.WriteLine(x1 - x2);
             Console.ReadLine();
 
         }
@@ -77,13 +77,49 @@ namespace Численные_методы
         }
         public static NumericalMethodObject operator -(NumericalMethodObject x, NumericalMethodObject y)
         {
-            return new NumericalMethodObject(
-                x.OriginalValue - y.OriginalValue,
-                x.RoundedValue - y.RoundedValue,
-                x.AbsoluteError + y.AbsoluteError,
-               RoundFirstSignificantDigit(Math.Abs(x.RoundedValue) / Math.Abs(x.RoundedValue - y.RoundedValue) * x.RelativeError +
+            var addObject = new NumericalMethodObject();
+            addObject.OriginalValue = x.OriginalValue - y.OriginalValue;
+            addObject.RoundedValue = x.RoundedValue - y.RoundedValue;
+            addObject.AbsoluteError = x.AbsoluteError + y.AbsoluteError;
+            addObject.RelativeError = RoundFirstSignificantDigit(Math.Abs(x.RoundedValue) / Math.Abs(x.RoundedValue - y.RoundedValue) * x.RelativeError +
                 Math.Abs(y.RoundedValue) / Math.Abs(x.RoundedValue - y.RoundedValue) * y.RelativeError
-                ));
+                );
+
+            addObject.WriteOperation($"a1 - a2 = {x.RoundedValue} - {y.RoundedValue}\n" +
+                $"a1 - a2 = {addObject.RoundedValue}\n\n" +
+
+                $"Δ(x1 - x2) = Δx1 - Δx2\n" +
+                $"Δ(x1 - x2) = {x.AbsoluteError} + {y.AbsoluteError}\n" +
+                $"Δ(x1 - x2) = {addObject.AbsoluteError}\n\n" +
+
+                $"δ(x1 - x2) = |a1|/|a1 - a2| * δx1 + |a2|/|a1 - a2| * δx2\n" +
+                $"δ(x1 - x2) = {Math.Abs(x.RoundedValue)}/{Math.Abs(x.RoundedValue - y.RoundedValue)} * {x.RelativeError} + {Math.Abs(y.RoundedValue)}/{Math.Abs(x.RoundedValue - y.RoundedValue)} * {y.RelativeError}\n" +
+                $"δ(x1 + x2) = {addObject.RelativeError}");
+
+            return addObject;
+        }
+        public static NumericalMethodObject operator *(NumericalMethodObject x, NumericalMethodObject y)
+        {
+            var addObject = new NumericalMethodObject();
+            addObject.OriginalValue = x.OriginalValue * y.OriginalValue;
+            addObject.RoundedValue = x.RoundedValue * y.RoundedValue;
+            addObject.AbsoluteError = x.AbsoluteError + y.AbsoluteError;
+            addObject.RelativeError = RoundFirstSignificantDigit(Math.Abs(x.RoundedValue) / Math.Abs(x.RoundedValue - y.RoundedValue) * x.RelativeError +
+                Math.Abs(y.RoundedValue) / Math.Abs(x.RoundedValue - y.RoundedValue) * y.RelativeError
+                );
+
+            addObject.WriteOperation($"a1 - a2 = {x.RoundedValue} - {y.RoundedValue}\n" +
+                $"a1 - a2 = {addObject.RoundedValue}\n\n" +
+
+                $"Δ(x1 - x2) = Δx1 - Δx2\n" +
+                $"Δ(x1 - x2) = {x.AbsoluteError} + {y.AbsoluteError}\n" +
+                $"Δ(x1 - x2) = {addObject.AbsoluteError}\n\n" +
+
+                $"δ(x1 - x2) = |a1|/|a1 - a2| * δx1 + |a2|/|a1 - a2| * δx2\n" +
+                $"δ(x1 - x2) = {Math.Abs(x.RoundedValue)}/{Math.Abs(x.RoundedValue - y.RoundedValue)} * {x.RelativeError} + {Math.Abs(y.RoundedValue)}/{Math.Abs(x.RoundedValue - y.RoundedValue)} * {y.RelativeError}\n" +
+                $"δ(x1 + x2) = {addObject.RelativeError}");
+
+            return addObject;
         }
         public NumericalMethodObject(float value, int roundDigitCount) : this((decimal)value, roundDigitCount)
         {
