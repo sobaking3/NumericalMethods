@@ -15,7 +15,7 @@ namespace Численные_методы
             var x1 = new NumericalMethodObject(5.032, 2);
             var x2 = new NumericalMethodObject(2.159, 2);
             //Console.WriteLine(x1);
-            Console.WriteLine(x1 + x2);
+            Console.WriteLine(x1 - x2);
             Console.ReadLine();
 
         }
@@ -44,10 +44,9 @@ namespace Численные_методы
                 $"Δx={Math.Abs(AbsoluteError)}\n");
 
             WriteOperation($"Относительная погрешность:\n" +
-                $"δx=Δx/|a|\n" +
-                $"δx=|{AbsoluteError} / {Math.Abs(RoundedValue)}|\n" +
-                $"δx=|{AbsoluteError / Math.Abs(RoundedValue)}|\n" +
-                $"δx={RelativeError}");
+                $"δx=Δx/a\n" +
+                $"δx={AbsoluteError} / {RoundedValue}\n" +
+                $"δx={RoundFirstSignificantDigit(AbsoluteError / RoundedValue)}\n");
 
 
 
@@ -61,6 +60,16 @@ namespace Численные_методы
                 x.AbsoluteError + y.AbsoluteError,
                (Math.Abs(x.RoundedValue) / Math.Abs(x.RoundedValue + y.RoundedValue) * x.RelativeError +
                 Math.Abs(y.RoundedValue) / Math.Abs(x.RoundedValue + y.RoundedValue) * y.RelativeError
+                ));
+        }
+        public static NumericalMethodObject operator -(NumericalMethodObject x, NumericalMethodObject y)
+        {
+            return new NumericalMethodObject(
+                x.OriginalValue - y.OriginalValue,
+                x.RoundedValue - y.RoundedValue,
+                x.AbsoluteError + y.AbsoluteError,
+               RoundFirstSignificantDigit(Math.Abs(x.RoundedValue) / Math.Abs(x.RoundedValue - y.RoundedValue) * x.RelativeError +
+                Math.Abs(y.RoundedValue) / Math.Abs(x.RoundedValue - y.RoundedValue) * y.RelativeError
                 ));
         }
         public NumericalMethodObject(float value, int roundDigitCount) : this((decimal)value, roundDigitCount)
