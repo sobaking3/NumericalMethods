@@ -15,7 +15,7 @@ namespace Численные_методы
             var x1 = new NumericalMethodObject(5.032, 2);
             var x2 = new NumericalMethodObject(2.159, 2);
             //Console.WriteLine(x1);
-            Console.WriteLine(x1 * x2);
+            Console.WriteLine(x1 / x2);
             Console.ReadLine();
 
         }
@@ -111,6 +111,27 @@ namespace Численные_методы
 
                 $"Δ(x1 * x2) = |a1|Δx1 + |a2|Δx2\n" +
                 $"Δ(x1 * x2) = {Math.Abs(x.RoundedValue)}*{x.AbsoluteError} + {Math.Abs(y.RoundedValue)}*{y.AbsoluteError}\n" +
+                $"Δ(x1 * x2) = {addObject.AbsoluteError}\n\n" +
+
+                $"δ(x1 * x2) = δx1 + δx2\n" +
+                $"δ(x1 * x2) = {x.RelativeError} + {y.RelativeError}\n" +
+                $"δ(x1 * x2) = {addObject.RelativeError}");
+
+            return addObject;
+        }
+        public static NumericalMethodObject operator /(NumericalMethodObject x, NumericalMethodObject y)
+        {
+            var addObject = new NumericalMethodObject();
+            addObject.OriginalValue = x.OriginalValue / y.OriginalValue;
+            addObject.RoundedValue = x.RoundedValue / y.RoundedValue;
+            addObject.AbsoluteError = ((Math.Abs(x.RoundedValue) * x.AbsoluteError) + (Math.Abs(y.RoundedValue) * y.AbsoluteError))/(y.RoundedValue*y.RoundedValue);
+            addObject.RelativeError = RoundFirstSignificantDigit(x.RelativeError + y.RelativeError);
+
+            addObject.WriteOperation($"a1 / a2 = {x.RoundedValue} / {y.RoundedValue}\n" +
+                $"a1 / a2 = {addObject.RoundedValue}\n\n" +
+
+                $"Δ(x1 / x2) = |a1|Δx1 + |a2|Δx2 / a2^2\n" +
+                $"Δ(x1 * x2) = {Math.Abs(x.RoundedValue)}*{x.AbsoluteError} + {Math.Abs(y.RoundedValue)}*{y.AbsoluteError} / {y.RoundedValue}^2\n" +
                 $"Δ(x1 * x2) = {addObject.AbsoluteError}\n\n" +
 
                 $"δ(x1 * x2) = δx1 + δx2\n" +
