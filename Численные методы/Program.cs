@@ -114,6 +114,7 @@ namespace Численные_методы
             return (decimal)Math.Round(input, precision);
         }
 
+
         static int GetDecimalDigitsCount(decimal number)
         {
             string[] str = number.ToString(new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." }).Split('.');
