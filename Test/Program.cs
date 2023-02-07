@@ -23,10 +23,10 @@ namespace Test
     public class NumericalMethodObject
     {
         public static bool WriteOperations { get; set; } = true;
-        public decimal OriginalValue { get; }
-        public decimal RoundedValue { get; }
-        public decimal AbsoluteError { get; }
-        public decimal RelativeError { get; }
+        public decimal OriginalValue { get; set; }
+        public decimal RoundedValue { get; set; }
+        public decimal AbsoluteError { get; set; }
+        public decimal RelativeError { get; set; }
 
         public NumericalMethodObject(decimal value, int roundDigitCount)
         {
