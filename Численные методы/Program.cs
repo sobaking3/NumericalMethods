@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using NumericalMethodLib;
 
-
 namespace Численные_методы
 {
-    class Program
+    internal class Program
     {
         // Δ δ
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             var x1 = new NumericalMethodObject(5.032, 2);
@@ -19,7 +19,6 @@ namespace Численные_методы
             //Console.WriteLine(x1);
             Console.WriteLine(x1 / x2);
             Console.ReadLine();
-
         }
     }
 }
