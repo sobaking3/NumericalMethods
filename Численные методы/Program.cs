@@ -22,4 +22,8 @@ namespace Численные_методы
 
         }
     }
+    class BisectionMethod
+    {
+
+    }
 }
