@@ -14,10 +14,11 @@ namespace Численные_методы
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            var x1 = new NumericalMethodObject(5.032, 2);
-            var x2 = new NumericalMethodObject(2.159, 2);
+            var x1 = NumericalMethodObject.Init(5.032M, 2);
+            var x2 = NumericalMethodObject.Init(2.159M, 2);
             //Console.WriteLine(x1);
-            Console.WriteLine(x1 / x2);
+            var x3 = x1.Item1.Div(x2.Item1);
+            //Console.WriteLine(x1 +Z)
             Console.ReadLine();
 
         }
