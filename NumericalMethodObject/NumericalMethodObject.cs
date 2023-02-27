@@ -48,7 +48,7 @@ namespace NumericalMethodLib
                 Math.Abs(RoundedValue) / Math.Abs(x.RoundedValue + RoundedValue) * RelativeError)
                 );
 
-            string output = $"a1 + a2 = {x.RoundedValue} + {RoundedValue}\n" +
+            string output = $"Сложение\n\na1 + a2 = {x.RoundedValue} + {RoundedValue}\n" +
                 $"a1 + a2 = {addObject.RoundedValue}\n\n" +
 
                 $"Δ(x1 + x2) = Δx1 + Δx2\n" +
@@ -72,7 +72,7 @@ namespace NumericalMethodLib
                 Math.Abs(RoundedValue) / Math.Abs(x.RoundedValue - RoundedValue) * RelativeError
                 );
 
-            string output = $"a1 - a2 = {x.RoundedValue} - {RoundedValue}\n" +
+            string output = $"Вычитание\n\na1 - a2 = {x.RoundedValue} - {RoundedValue}\n" +
                 $"a1 - a2 = {addObject.RoundedValue}\n\n" +
 
                 $"Δ(x1 - x2) = Δx1 - Δx2\n" +
@@ -93,7 +93,7 @@ namespace NumericalMethodLib
             addObject.AbsoluteError = (Math.Abs(x.RoundedValue) * x.AbsoluteError) + (Math.Abs(RoundedValue) * AbsoluteError);
             addObject.RelativeError = RoundFirstSignificantDigit(x.RelativeError + RelativeError);
 
-            string output = $"a1 * a2 = {x.RoundedValue} * {RoundedValue}\n" +
+            string output = $"Умножение\n\na1 * a2 = {x.RoundedValue} * {RoundedValue}\n" +
                 $"a1 * a2 = {addObject.RoundedValue}\n\n" +
 
                 $"Δ(x1 * x2) = |a1|Δx1 + |a2|Δx2\n" +
@@ -114,16 +114,16 @@ namespace NumericalMethodLib
             addObject.AbsoluteError = ((Math.Abs(x.RoundedValue) * x.AbsoluteError) + (Math.Abs(RoundedValue) * AbsoluteError)) / (RoundedValue * RoundedValue);
             addObject.RelativeError = RoundFirstSignificantDigit(x.RelativeError + RelativeError);
 
-            string output = $"a1 / a2 = {x.RoundedValue} / {RoundedValue}\n" +
+            string output = $"Деление\n\na1 / a2 = {x.RoundedValue} / {RoundedValue}\n" +
                 $"a1 / a2 = {addObject.RoundedValue}\n\n" +
 
                 $"Δ(x1 / x2) = |a1|Δx1 + |a2|Δx2 / a2^2\n" +
-                $"Δ(x1 * x2) = {Math.Abs(x.RoundedValue)}*{x.AbsoluteError} + {Math.Abs(RoundedValue)}*{AbsoluteError} / {RoundedValue}^2\n" +
-                $"Δ(x1 * x2) = {addObject.AbsoluteError}\n\n" +
+                $"Δ(x1 / x2) = {Math.Abs(x.RoundedValue)}*{x.AbsoluteError} + {Math.Abs(RoundedValue)}*{AbsoluteError} / {RoundedValue}^2\n" +
+                $"Δ(x1 / x2) = {addObject.AbsoluteError}\n\n" +
 
-                $"δ(x1 * x2) = δx1 + δx2\n" +
-                $"δ(x1 * x2) = {x.RelativeError} + {RelativeError}\n" +
-                $"δ(x1 * x2) = {addObject.RelativeError}";
+                $"δ(x1 / x2) = δx1 + δx2\n" +
+                $"δ(x1 / x2) = {x.RelativeError} + {RelativeError}\n" +
+                $"δ(x1 / x2) = {addObject.RelativeError}";
 
             return (addObject, output);
         }
